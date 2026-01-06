@@ -1,1 +1,27 @@
 
+# Name of the workflow
+name: Hello World CI
+
+# Controls when the workflow will run
+on:
+  push: # Runs when code is pushed
+    branches: [ main ] # To the 'main' branch
+  pull_request: # Or when a PR is opened/synced
+    branches: [ main ]
+
+# A workflow run is made up of one or more jobs that run sequentially or in parallel
+jobs:
+  # This job is called 'say-hello'
+  say-hello:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Step 1: Check out the repository code
+      - name: Checkout repository
+        uses: actions/checkout@v4 # {Link: actions/checkout@v4 github.com}
+
+      # Step 2: Run a simple echo command
+      - name: Say Hello
+        run: echo "Hello from GitHub Actions on commit ${{ github.sha }}!"
